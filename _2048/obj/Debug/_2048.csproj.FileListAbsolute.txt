@@ -1,0 +1,11 @@
+D:\my_projects\_2048\_2048\bin\Debug\_2048.exe.config
+D:\my_projects\_2048\_2048\bin\Debug\_2048.exe
+D:\my_projects\_2048\_2048\bin\Debug\_2048.pdb
+D:\my_projects\_2048\_2048\obj\Debug\_2048.csproj.AssemblyReference.cache
+D:\my_projects\_2048\_2048\obj\Debug\_2048.csproj.SuggestedBindingRedirects.cache
+D:\my_projects\_2048\_2048\obj\Debug\_2048.Properties.Resources.resources
+D:\my_projects\_2048\_2048\obj\Debug\_2048.csproj.GenerateResource.cache
+D:\my_projects\_2048\_2048\obj\Debug\_2048.csproj.CoreCompileInputs.cache
+D:\my_projects\_2048\_2048\obj\Debug\_2048.exe
+D:\my_projects\_2048\_2048\obj\Debug\_2048.pdb
+D:\my_projects\_2048\_2048\obj\Debug\_2048.Form1.resources
