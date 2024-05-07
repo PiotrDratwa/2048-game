@@ -46,12 +46,17 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.DebugLabel = new System.Windows.Forms.Label();
+            this.easybutton = new System.Windows.Forms.Button();
+            this.mediumbutton = new System.Windows.Forms.Button();
+            this.hardbutton = new System.Windows.Forms.Button();
+            this.resetbutton = new System.Windows.Forms.Button();
+            this.LoseLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label13
             // 
             this.label13.BackColor = System.Drawing.Color.DarkGray;
-            this.label13.Location = new System.Drawing.Point(12, 233);
+            this.label13.Location = new System.Drawing.Point(12, 261);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(77, 65);
             this.label13.TabIndex = 15;
@@ -60,7 +65,7 @@
             // label14
             // 
             this.label14.BackColor = System.Drawing.Color.DarkGray;
-            this.label14.Location = new System.Drawing.Point(95, 233);
+            this.label14.Location = new System.Drawing.Point(95, 261);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(77, 65);
             this.label14.TabIndex = 14;
@@ -69,7 +74,7 @@
             // label15
             // 
             this.label15.BackColor = System.Drawing.Color.DarkGray;
-            this.label15.Location = new System.Drawing.Point(178, 233);
+            this.label15.Location = new System.Drawing.Point(178, 261);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(77, 65);
             this.label15.TabIndex = 13;
@@ -78,7 +83,7 @@
             // label16
             // 
             this.label16.BackColor = System.Drawing.Color.DarkGray;
-            this.label16.Location = new System.Drawing.Point(261, 233);
+            this.label16.Location = new System.Drawing.Point(261, 261);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(77, 65);
             this.label16.TabIndex = 12;
@@ -87,7 +92,7 @@
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.DarkGray;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 65);
             this.label1.TabIndex = 19;
@@ -96,7 +101,7 @@
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.DarkGray;
-            this.label2.Location = new System.Drawing.Point(95, 9);
+            this.label2.Location = new System.Drawing.Point(95, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 65);
             this.label2.TabIndex = 18;
@@ -105,7 +110,7 @@
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.DarkGray;
-            this.label3.Location = new System.Drawing.Point(178, 9);
+            this.label3.Location = new System.Drawing.Point(178, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 65);
             this.label3.TabIndex = 17;
@@ -114,7 +119,7 @@
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.DarkGray;
-            this.label4.Location = new System.Drawing.Point(261, 9);
+            this.label4.Location = new System.Drawing.Point(261, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 65);
             this.label4.TabIndex = 16;
@@ -123,7 +128,7 @@
             // label5
             // 
             this.label5.BackColor = System.Drawing.Color.DarkGray;
-            this.label5.Location = new System.Drawing.Point(12, 83);
+            this.label5.Location = new System.Drawing.Point(12, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 65);
             this.label5.TabIndex = 23;
@@ -132,7 +137,7 @@
             // label6
             // 
             this.label6.BackColor = System.Drawing.Color.DarkGray;
-            this.label6.Location = new System.Drawing.Point(95, 83);
+            this.label6.Location = new System.Drawing.Point(95, 111);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 65);
             this.label6.TabIndex = 22;
@@ -141,7 +146,7 @@
             // label7
             // 
             this.label7.BackColor = System.Drawing.Color.DarkGray;
-            this.label7.Location = new System.Drawing.Point(178, 83);
+            this.label7.Location = new System.Drawing.Point(178, 111);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 65);
             this.label7.TabIndex = 21;
@@ -150,7 +155,7 @@
             // label8
             // 
             this.label8.BackColor = System.Drawing.Color.DarkGray;
-            this.label8.Location = new System.Drawing.Point(261, 83);
+            this.label8.Location = new System.Drawing.Point(261, 111);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 65);
             this.label8.TabIndex = 20;
@@ -159,7 +164,7 @@
             // label9
             // 
             this.label9.BackColor = System.Drawing.Color.DarkGray;
-            this.label9.Location = new System.Drawing.Point(12, 159);
+            this.label9.Location = new System.Drawing.Point(12, 187);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 65);
             this.label9.TabIndex = 27;
@@ -168,7 +173,7 @@
             // label10
             // 
             this.label10.BackColor = System.Drawing.Color.DarkGray;
-            this.label10.Location = new System.Drawing.Point(95, 159);
+            this.label10.Location = new System.Drawing.Point(95, 187);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 65);
             this.label10.TabIndex = 26;
@@ -177,7 +182,7 @@
             // label11
             // 
             this.label11.BackColor = System.Drawing.Color.DarkGray;
-            this.label11.Location = new System.Drawing.Point(178, 159);
+            this.label11.Location = new System.Drawing.Point(178, 187);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 65);
             this.label11.TabIndex = 25;
@@ -186,7 +191,7 @@
             // label12
             // 
             this.label12.BackColor = System.Drawing.Color.DarkGray;
-            this.label12.Location = new System.Drawing.Point(261, 159);
+            this.label12.Location = new System.Drawing.Point(261, 187);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(77, 65);
             this.label12.TabIndex = 24;
@@ -195,18 +200,71 @@
             // DebugLabel
             // 
             this.DebugLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.DebugLabel.Location = new System.Drawing.Point(348, 11);
+            this.DebugLabel.Location = new System.Drawing.Point(12, 0);
             this.DebugLabel.Name = "DebugLabel";
-            this.DebugLabel.Size = new System.Drawing.Size(476, 286);
+            this.DebugLabel.Size = new System.Drawing.Size(326, 36);
             this.DebugLabel.TabIndex = 28;
             this.DebugLabel.Click += new System.EventHandler(this.DebugLabel_Click);
+            // 
+            // easybutton
+            // 
+            this.easybutton.Location = new System.Drawing.Point(20, 392);
+            this.easybutton.Name = "easybutton";
+            this.easybutton.Size = new System.Drawing.Size(69, 62);
+            this.easybutton.TabIndex = 29;
+            this.easybutton.Text = "Easy";
+            this.easybutton.UseVisualStyleBackColor = true;
+            this.easybutton.Click += new System.EventHandler(this.easybutton_Click);
+            // 
+            // mediumbutton
+            // 
+            this.mediumbutton.Location = new System.Drawing.Point(99, 392);
+            this.mediumbutton.Name = "mediumbutton";
+            this.mediumbutton.Size = new System.Drawing.Size(73, 62);
+            this.mediumbutton.TabIndex = 30;
+            this.mediumbutton.Text = "medium";
+            this.mediumbutton.UseVisualStyleBackColor = true;
+            this.mediumbutton.Click += new System.EventHandler(this.mediumbutton_Click);
+            // 
+            // hardbutton
+            // 
+            this.hardbutton.Location = new System.Drawing.Point(178, 392);
+            this.hardbutton.Name = "hardbutton";
+            this.hardbutton.Size = new System.Drawing.Size(73, 62);
+            this.hardbutton.TabIndex = 31;
+            this.hardbutton.Text = "hard";
+            this.hardbutton.UseVisualStyleBackColor = true;
+            this.hardbutton.Click += new System.EventHandler(this.hardbutton_Click);
+            // 
+            // resetbutton
+            // 
+            this.resetbutton.Location = new System.Drawing.Point(257, 392);
+            this.resetbutton.Name = "resetbutton";
+            this.resetbutton.Size = new System.Drawing.Size(73, 62);
+            this.resetbutton.TabIndex = 32;
+            this.resetbutton.Text = "Reset";
+            this.resetbutton.UseVisualStyleBackColor = true;
+            this.resetbutton.Click += new System.EventHandler(this.resetbutton_Click);
+            // 
+            // LoseLabel
+            // 
+            this.LoseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.LoseLabel.Location = new System.Drawing.Point(12, 335);
+            this.LoseLabel.Name = "LoseLabel";
+            this.LoseLabel.Size = new System.Drawing.Size(326, 54);
+            this.LoseLabel.TabIndex = 33;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(829, 310);
+            this.ClientSize = new System.Drawing.Size(356, 464);
+            this.Controls.Add(this.LoseLabel);
+            this.Controls.Add(this.resetbutton);
+            this.Controls.Add(this.hardbutton);
+            this.Controls.Add(this.mediumbutton);
+            this.Controls.Add(this.easybutton);
             this.Controls.Add(this.DebugLabel);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
@@ -229,6 +287,15 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Label LoseLabel;
+
+        private System.Windows.Forms.Label loselabel;
+
+        private System.Windows.Forms.Button easybutton;
+        private System.Windows.Forms.Button mediumbutton;
+        private System.Windows.Forms.Button hardbutton;
+        private System.Windows.Forms.Button resetbutton;
 
         private System.Windows.Forms.Label DebugLabel;
 

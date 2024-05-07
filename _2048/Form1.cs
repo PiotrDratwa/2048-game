@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Timers;
 
 namespace _2048
 {
   public partial class Form1 : Form
   {
         private List<List<int>> matrix = InitMatrix();
+        private int difficulty = 1;
+        private static System.Timers.Timer aTimer = new System.Timers.Timer();
+        private static bool lose;
         public Form1()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            AddRandomNums();
+            update_UI();
         }
         
         private static List<List<int>> InitMatrix()
@@ -55,29 +63,62 @@ namespace _2048
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            LoseLabel.Text = "";
+            lose = LoseCheck(lose);
+            //if (lose) {return;}
+            aTimer.Stop();
+            aTimer.Elapsed += OnTimedEvent;
+            if (difficulty == 1)
+            {
+                aTimer.Interval = 5000;
+            } else if (difficulty == 2)
+            {
+                aTimer.Interval = 2000;
+            }
+            aTimer.Start();
+            lose = false;
+            bool moved;
             switch (e.KeyChar)
             {
                 case 'w':
-                    ShiftVertical(true);
-                    AddRandomNums();
+                    DebugLabel.Text = "hahaha";
+                    moved = ShiftVertical(true);
+                    if(moved)
+                    {
+                        AddRandomNums();
+                    }
                     update_UI();
-                    LoseCheck();
+                    LoseCheck(lose);
                     break;
                 case 'a':
-                    AddRandomNums();
-                    LoseCheck();
+                    moved = ShiftHorizontal(false);
+                    if(moved)
+                    {
+                        AddRandomNums();
+                    }
+                    update_UI();
+                    lose = LoseCheck(lose);
                     break;
                 case 's':
-                    ShiftVertical(false);
-                    AddRandomNums();
+                    moved = ShiftVertical(false);
+                    if(moved)
+                    {
+                        AddRandomNums();
+                    }
                     update_UI();
-                    LoseCheck();
+                    LoseCheck(lose);
                     break;
                 case 'd':
-                    AddRandomNums();
-                    LoseCheck();
+                    moved = ShiftHorizontal(true);
+                    if(moved)
+                    {
+                        AddRandomNums();
+                    }
+                    update_UI();
+                    LoseCheck(lose);
                     break;
             }
+            
         }
 
         private void AddRandomNums()
@@ -106,8 +147,10 @@ namespace _2048
             dict[(x*4+y)].Text = "2";
         }
 
-        private bool LoseCheck()
+        private bool LoseCheck(bool lose)
         {
+            if (lose)
+            { reset(true);return true;}
             int count = 4;
             for (int i = 0; i < 4; i++)
             {
@@ -119,9 +162,34 @@ namespace _2048
 
             if (count == 0)
             {
+                int x;
+                int y;
+                for (int i = 0; i < 16; i++)
+                {
+                    x = Convert.ToInt32(Math.Floor((double)i / 4.00));
+                    y = i % 4;
+                    if (y == 3){continue;}
+                    
+                    if (matrix[x][y] == matrix[x][y + 1])
+                    {
+                        return false;
+                    }
+                }
+                for (int i = 0; i < 12; i++)
+                {
+                    x = Convert.ToInt32(Math.Floor((double)i / 4.00));
+                    y = i % 4;
+                    
+                    if (matrix[x][y] == matrix[x+1][y])
+                    {
+                        return false;
+                    }
+                }
+
+                reset(true);
                 return true;
             }
-
+            
             return false;
         }
 
@@ -129,9 +197,10 @@ namespace _2048
         {
             DebugLabel.Text = "";
         }
-
-        private void ShiftVertical(bool up)
+        
+        private bool ShiftVertical(bool up)
         {
+            bool moved = false;
             int x;
             int y;
             int val;
@@ -146,25 +215,28 @@ namespace _2048
                     {
                         continue;
                     }
+                    
                     while (matrix[x - 1][y] == 0)
                     {
+                        moved = true;
                         matrix[x][y] = 0;
                         matrix[x - 1][y] = val;
                         x--;
                         if (x == 0) {break;}
                     }
                     
-                    if (x == 0) {break;}
+                    if (x == 0) {continue;}
                     if (matrix[x - 1][y] == val)
                     {
+                        moved = true;
                         matrix[x][y] = 0;
-                        matrix[x - 1][y] *= val;
+                        matrix[x - 1][y] += val;
                     }
                 }
             }
             else
             {
-                for (int i = 12; i > 0; i--)
+                for (int i = 11; i > -1; i--)
                 {
                     x = Convert.ToInt32(Math.Floor((double)i / 4.00));
                     y = i % 4;
@@ -173,9 +245,10 @@ namespace _2048
                     {
                         continue;
                     }
-
+                    
                     while (matrix[x + 1][y] == 0)
                     {
+                        moved = true;
                         matrix[x][y] = 0;
                         matrix[x + 1][y] = val;
                         x++;
@@ -184,27 +257,173 @@ namespace _2048
                             break;
                         }
                     }
-
+                    
+                    if (x == 3) {continue;}
                     if (matrix[x + 1][y] == val)
                     {
+                        moved = true;
                         matrix[x][y] = 0;
-                        matrix[x + 1][y] *= val;
+                        matrix[x + 1][y] += val;
                     }
                 }
             }
+
+            return moved;
         }
 
+        private bool ShiftHorizontal(bool right)
+        {
+            bool moved = false;
+            int x;
+            int y;
+            int val;
+            if (right)
+            {
+                for (int i = 15; i > -1; i--)
+                {
+                    x = Convert.ToInt32(Math.Floor((double)i / 4.00));
+                    y = i % 4;
+                    val = matrix[x][y];
+                    if (val == 0||y == 3)
+                    {
+                        continue;
+                    }
+                    
+                    while (matrix[x][y+1] == 0)
+                    {
+                        moved = true;
+                        matrix[x][y] = 0;
+                        matrix[x][y+1] = val;
+                        y++;
+                        if (y == 3) {break;}
+                    }
+                    
+                    if (y == 3) {continue;}
+                    if (matrix[x][y+1] == val)
+                    {
+                        moved = true;
+                        matrix[x][y] = 0;
+                        matrix[x][y+1] += val;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 16; i++)
+                {
+                    x = Convert.ToInt32(Math.Floor((double)i / 4.00));
+                    y = i % 4;
+                    val = matrix[x][y];
+                    if (val == 0||y == 0)
+                    {
+                        continue;
+                    }
+                    
+                    while (matrix[x][y-1] == 0)
+                    {
+                        moved = true;
+                        matrix[x][y] = 0;
+                        matrix[x][y-1] = val;
+                        y--;
+                        if (y == 0)
+                        {
+                            break;
+                        }
+                    }
+                    
+                    if (y == 0) {continue;}
+                    if (matrix[x][y-1] == val)
+                    {
+                        moved = true;
+                        matrix[x][y] = 0;
+                        matrix[x][y-1] += val;
+                    }
+                }
+            }
+
+            return moved;
+        }
         private void update_UI()
         {
             Dictionary<int, Label> dict = InitDict();
             int x;
             int y;
+            int score = 0;
+            //DebugLabel.Text = "";
             for (int i = 0; i < 16; i ++ )
             {
                 x = Convert.ToInt32(Math.Floor((double)i / 4.00));
                 y = i % 4;
+                
+                /*if (y == 0)
+                {
+                    DebugLabel.Text += "\n";
+                }
+                DebugLabel.Text += " ";
+                DebugLabel.Text += matrix[x][y].ToString();*/
+                score += matrix[x][y];
                 dict[i].Text = matrix[x][y].ToString();
+                switch (matrix[x][y])
+                {
+                    case 0: dict[i].BackColor = Color.DarkGray;
+                        break;
+                    case 2: dict[i].BackColor = Color.Khaki;
+                        break;
+                    case 4: dict[i].BackColor = Color.Aquamarine;
+                        break;
+                    case 8: dict[i].BackColor = Color.Aqua;
+                        break;
+                    case 16: dict[i].BackColor = Color.Teal;
+                        break;
+                    case 32: dict[i].BackColor = Color.Coral;
+                        break;
+                    case 64: dict[i].BackColor = Color.Chocolate;
+                        break;
+                    case 128: dict[i].BackColor = Color.OrangeRed;
+                        break;
+                    case 256: dict[i].BackColor = Color.Firebrick;
+                        break;
+                }
             }
+
+            DebugLabel.Text = $"Score: {score.ToString()}";
         }
+        
+        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            lose = true;
+        }
+
+        private void easybutton_Click(object sender, EventArgs e)
+        {
+            difficulty = 0;
+        }
+
+        private void mediumbutton_Click(object sender, EventArgs e)
+        {
+            difficulty = 1;
+        }
+
+        private void hardbutton_Click(object sender, EventArgs e)
+        {
+            difficulty = 2;
+        }
+
+        private void resetbutton_Click(object sender, EventArgs e)
+        {
+            reset(false);
+        }
+
+        private void reset(bool message)
+        {
+            if (message)
+            {
+                LoseLabel.Text = "You lost";
+            }
+            matrix = InitMatrix();
+            AddRandomNums();
+            update_UI();
+        }
+        
   }
 }
