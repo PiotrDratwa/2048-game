@@ -343,24 +343,18 @@ namespace _2048
 
             return moved;
         }
+        
         private void update_UI()
         {
             Dictionary<int, Label> dict = InitDict();
             int x;
             int y;
             int score = 0;
-            //DebugLabel.Text = "";
             for (int i = 0; i < 16; i ++ )
             {
                 x = Convert.ToInt32(Math.Floor((double)i / 4.00));
                 y = i % 4;
                 
-                /*if (y == 0)
-                {
-                    DebugLabel.Text += "\n";
-                }
-                DebugLabel.Text += " ";
-                DebugLabel.Text += matrix[x][y].ToString();*/
                 score += matrix[x][y];
                 dict[i].Text = matrix[x][y].ToString();
                 switch (matrix[x][y])
@@ -382,6 +376,12 @@ namespace _2048
                     case 128: dict[i].BackColor = Color.OrangeRed;
                         break;
                     case 256: dict[i].BackColor = Color.Firebrick;
+                        break;
+                    case 512: dict[i].BackColor = Color.DarkOrchid;
+                        break;
+                    case 1024: dict[i].BackColor = Color.Purple;
+                        break;
+                    case 2048: dict[i].BackColor = Color.Indigo;
                         break;
                 }
             }
