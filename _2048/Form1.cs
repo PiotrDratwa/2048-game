@@ -65,7 +65,6 @@ namespace _2048
         {
             LoseLabel.Text = "";
             lose = LoseCheck(lose);
-            //if (lose) {return;}
             aTimer.Stop();
             aTimer.Elapsed += OnTimedEvent;
             if (difficulty == 1)
@@ -76,12 +75,12 @@ namespace _2048
                 aTimer.Interval = 2000;
             }
             aTimer.Start();
+            
             lose = false;
             bool moved;
             switch (e.KeyChar)
             {
                 case 'w':
-                    DebugLabel.Text = "hahaha";
                     moved = ShiftVertical(true);
                     if(moved)
                     {
@@ -128,18 +127,10 @@ namespace _2048
             int x = rnd.Next(4);
             int y = rnd.Next(4);
             
-            try
+            while (matrix[x][y] != 0)
             {
-                while (matrix[x][y] != 0)
-                {
-                    x = rnd.Next(4);
-                    y = rnd.Next(4);
-                }
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                DebugLabel.Text += $"x = {x}\ny = {y}";
-                throw;
+                x = rnd.Next(4);
+                y = rnd.Next(4);
             }
 
             matrix[x][y] = 2;
